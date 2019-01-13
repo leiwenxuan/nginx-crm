@@ -58,9 +58,11 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<p>esdklfjklsjf</p>
         {% load menu_list %}
 <div>
 {{  request.user }}
+
     {% if request.user.name %}
      {% bread_crumb request %}
     {% endif %}
@@ -90,7 +92,16 @@
 {% block index %}
 {% endblock %}
 
-
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-sm-3 col-md-2 sidebar">
+            {% load menu_list %}
+                  {% meun_list request %}
+        </div>
+        {% block page-main %}
+        {% endblock %}
+    </div>
+</div>
 
 {% block script-page %}
 

@@ -4035,3 +4035,175 @@ Traceback (most recent call last):
   File "/opt/python36/lib/python3.6/site-packages/PIL/ImageFont.py", line 145, in __init__
     layout_engine=layout_engine)
 OSError: cannot open resource
+[2019-01-13 21:08:07,947][Thread-1:140385043654400][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2019-01-13 21:08:08,909][Thread-7:140384957097728][task_id:django.request][base.py:152][WARNING][Not Found: /favicon.ico]
+[2019-01-13 21:08:22,330][Thread-12:140384965490432][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /crm/v_code/]
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/usr/lib/python3.6/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/lib/python3.6/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'szcrm.django_session' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/lib/python3.6/site-packages/django/utils/deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 58, in process_response
+    request.session.save()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 81, in save
+    return self.create()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 50, in create
+    self._session_key = self._get_new_session_key()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 164, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 46, in exists
+    return self.model.objects.filter(session_key=session_key).exists()
+  File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 673, in exists
+    return self.query.has_results(using=self.db)
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/query.py", line 517, in has_results
+    return compiler.has_results()
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 858, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 899, in execute_sql
+    raise original_exception
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 889, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/usr/lib/python3.6/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/usr/lib/python3.6/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/lib/python3.6/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'szcrm.django_session' doesn't exist")
+[2019-01-13 21:08:34,174][Thread-20:140384965490432][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /crm/v_code/]
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/usr/lib/python3.6/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/lib/python3.6/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'szcrm.django_session' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/lib/python3.6/site-packages/django/utils/deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 58, in process_response
+    request.session.save()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 81, in save
+    return self.create()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 50, in create
+    self._session_key = self._get_new_session_key()
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 164, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/usr/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 46, in exists
+    return self.model.objects.filter(session_key=session_key).exists()
+  File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 673, in exists
+    return self.query.has_results(using=self.db)
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/query.py", line 517, in has_results
+    return compiler.has_results()
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 858, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 899, in execute_sql
+    raise original_exception
+  File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 889, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/usr/lib/python3.6/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/lib/python3.6/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 732, in _read_query_result
+    result.read()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/lib/python3.6/site-packages/pymysql/connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "/usr/lib/python3.6/site-packages/pymysql/protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/lib/python3.6/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'szcrm.django_session' doesn't exist")
+[2019-01-13 21:16:46,920][Thread-1:140647350273792][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2019-01-13 21:45:30,224][Thread-36:140647350273792][task_id:django.request][base.py:152][WARNING][Not Found: /crm/]
+[2019-01-13 21:56:33,060][Thread-60:140625032251136][task_id:django.request][base.py:152][WARNING][Not Found: /rbac]
+[2019-01-13 21:56:38,628][Thread-61:140625032251136][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/]
+[2019-01-13 21:57:17,524][Thread-65:140625032251136][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/]
+[2019-01-13 21:58:02,752][Thread-69:140625032251136][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2019-01-13 22:06:55,321][Thread-136:140624661567232][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/]
+[2019-01-13 22:07:23,797][Thread-139:140624661567232][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/cus_list]
+[2019-01-13 22:08:28,919][Thread-169:140624653174528][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/cus_list]
+[2019-01-13 22:08:30,572][Thread-170:140624653174528][task_id:django.request][base.py:152][WARNING][Not Found: /rbac/cus_list]

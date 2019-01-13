@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-#    'rbac.mymiddleware.loginwara.LoginMiddle',
+   #'rbac.mymiddleware.loginwara.LoginMiddle',
     'django.middleware.cache.FetchFromCacheMiddleware',  # 缓存配置
 ]
 
