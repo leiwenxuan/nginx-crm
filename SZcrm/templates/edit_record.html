@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block reg %}
+    <h2 class="text-center">{% if edit_id %}编辑跟进客户{% else %}添加跟进客户{% endif %}</h2>
+  <form class="form-horizontal" action="{{ request.get_full_path }}" method="post" novalidate
+                      autocomplete="off">
+                    {% csrf_token %}
+                    {% for filed in form_obj %}
+                        <div class="form-group">
+                            <label for="{{ filed.id_for_label }}"
+                                   class="col-sm-4 control-label">{{ filed.label }}</label>
+                            <div class="col-sm-6">
+                                {{ filed }}
+                                {{ filed.errors.0 }}
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-10">
+                            <button id="id_but" type="submit" class="btn btn-success">ajax Sign in</button>
+                        </div>
+                    </div>
+                </form>
+
+{% endblock %}

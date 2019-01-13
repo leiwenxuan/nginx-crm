@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>客户展示界面</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'sweet/sweetalert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link style="background-color: red" rel="icon" href="{% static 'picture/admin .png' %}">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/meun-css.css' %}">
+
+</head>
+<style>
+    body {
+        padding-top: 70px;
+    }
+
+</style>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container-fluid container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+            <p class="navbar-text navbar-right">欢迎光临</p>
+            <ul class="nav navbar-nav navbar-right">
+                <li></li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">{{ request.user.name }} <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {#            <li><a href="{% url 'forma:change' %}">修改密码</a></li>#}
+                        <li><a href="{% url 'crm:logout' %}">注销</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        {% load menu_list %}
+<div>
+{{  request.user }}
+    {% if request.user.name %}
+     {% bread_crumb request %}
+    {% endif %}
+
+</div>
+
+<script src="{% static 'css/jquery.js' %}"></script>
+<script src="{% static 'css/menu-js.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7/js/bootstrap.js' %}"></script>
+<script src="{% static 'setup_ajax.js' %}"></script>
+<script src="{% static 'sweet/sweetalert.js' %}"></script>
+
+{% block reg %}
+    {#    注册继承#}
+{% endblock %}
+
+{% block login %}
+    {#　登陆继承#}
+{% endblock %}
+
+{% block change %}
+    {#    修改密码继承#}
+{% endblock %}
+
+{% block logout %}
+{% endblock %}
+{% block index %}
+{% endblock %}
+
+
+
+{% block script-page %}
+
+{% endblock %}
+</body>
+</html>

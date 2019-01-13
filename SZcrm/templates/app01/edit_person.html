@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+</head>
+<body>
+<form action="{{ request.get_full_path }}" method="post">
+    {% csrf_token %}
+    {% for field in form_obj %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+          <span>{{ error_msg }}</span>
+          <span>{{ field.errors }}</span>
+    {% endfor %}
+  
+    <input type="submit" class="btn btn-warning">
+</form>
+
+</body>
+</html>

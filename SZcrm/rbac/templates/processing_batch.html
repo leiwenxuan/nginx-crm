@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block page-main %}
+    <!--构建3个面板-->
+    <div class="container">
+        <div class="row">
+            <!--用户面板-->
+            <div class="col-md-3 col-md-offset-1 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">用户信息</div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            {% for user in user_obj %}
+                                <a href="?user_id={{ user.id }}" class="list-group-item">{{ user.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--角色面板-->
+            <div class="col-md-3 ">
+                <form action="" method="post">
+                {% csrf_token %}
+                <input class="hidden" type="text" name="type_post" value="role_set">
+                <div class="panel panel-info">
+                    <div class="panel-heading">角色管理 <button type="submit" class="pull-right"> 保存</button></div>
+
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>角色</th>
+                                <th>选择</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for role in role_obj %}
+                                <tr>
+                                    <td><a href="?role_id={{ role.id }}">{{ role.title }}</a></td>
+                                    {% if role in user_id_obj.roles.all %}
+                                        <td><input checked  type="checkbox" name="role_id"value="{{ role.id }}"></td>
+                                    {% else %}
+                                        <td><input type="checkbox" name="role_id"  value="{{ role.id }}"></td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!--权限面板-->
+            <div class="col-md-5 ">
+                <form action="" method="post">
+                {% csrf_token %}
+                    <input type="text" class="hidden" name="type_post" value="process_set">
+                <div class="panel panel-info">
+                    <div class="panel-heading">权限路由设置 <button type="submit" class="pull-right"> 保存</button></div>
+                    <div class="panel-body">
+                        {% for menu in menu_obj %}
+                            <div class="panel panel-info">
+                                <div class="panel-heading  menu-bu"> <i class="fa fa-angle-double-up"
+                                                                        aria-hidden="true"></i>{{ menu.title }}</div>
+                                <div class="panel-body">
+                                    {% for process in menu.userpurview_set.all %}
+                                        <div class="list-group-item">
+                                            {% if process in role_id_obj.permissions.all %}
+                                                 <input checked type="checkbox" name="process_id" value="{{ process.id }}">
+                                                {% else %}
+                                                 <input type="checkbox" name="process_id" value="{{ process.id }}">
+                                            {% endif %}
+                                            {{ process.title }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script-page %}
+    <script>
+    $('.menu-bu').on('click', function () {
+        console.log(this)
+        $(this).find('i').toggleClass('fa-rotate-180').parent().next('.panel-body').slideToggle();
+    })
+
+    </script>
+{% endblock %}

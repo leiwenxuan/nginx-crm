@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+{% block page-main %}
+<div class="row placeholders">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                班级列表
+            </div>
+            <div class="text-left"><a href="{% url 'crm:add_list' 0 %}" class="btn btn-success btn-sm">添加</a></div>
+            <div class="panel-footer">
+                <!--批量操作开始-->
+                <div class="pull-left">
+
+                    <select name="" id="">
+                        <option value="">--------------</option>
+
+
+                    </select>
+                    <input type="submit" value="批量操作">
+                </div>
+                <!--批量操作结束-->
+
+                <!--主页显示数据表格-->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>#</th>
+                            <th>课程名称</th>
+                            <th>学期</th>
+                            <th>学费</th>
+                            <th>说明</th>
+                            <th>开班日期</th>
+                            <th>选择合同模板</th>
+                            <th>老师</th>
+                            <th>校区</th>
+                            <th>班级类型</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for class in class_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'crm:courserecord' class.id %}"> {{ class.get_course_display }}</a></td>
+                            <td>{{ class.semester }}</td>
+
+                            <td>{{ class.price }}</td>
+                            <td>{{ class.memo|default:"暂无" }}</td>
+                            <td>{{ class.start_date | date}}</td>
+                            <td>{{ class.contract|default:'暂无' }}</td>
+                            <td>{{ class.show_teacher }}</td>
+                            <td>{{ class.campuses }}</td>
+                            <td>{{ class.get_class_type_display }}</td>
+
+
+                            <td><a href="{% url 'crm:add_list' class.id  %}" class="btn btn-warning">修改</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+                <!--主页显示数据结束-->
+
+                <!--分页开始-->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{ page_list|safe }}
+                    </ul>
+                </nav>
+                <!--分页结束-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

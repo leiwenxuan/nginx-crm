@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+{% block page-main %}
+
+    <div class="container">
+
+        <div class="row placeholders">
+            {#    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">#}
+            {#    <div class="col-md-2"></div>#}
+            <div class="col-md-3 col-sm-offset-1" >
+                <div class="panel panel-success"  >
+                    <div class="panel panel-info">
+                         <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-book"></i> 菜单管理
+                    <a href="{% url 'rbac:add_permission' %}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+                        </h3>
+                    </div>
+
+                    </div>
+
+                    <div class="panel-footer">
+                        <!--主页显示数据表格-->
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+
+                                <th>#</th>
+                                <th>权限名字</th>
+                                <th>ICON</th>
+                                <th>权重</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for menu in menu_obj %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ menu.title }}</td>
+                                    <td> <i class="fa {{ menu.icon }}"></i></td>
+                                    <td>{{ menu.weight }}</td>
+                                    <td style="width: 60px">
+                                          <a href="{% url 'rbac:edit_menu' menu.id %}"><i class="fa fa-edit"></i></a>
+                                    <a href="{% url 'rbac:del_menu'  menu.id %}"> <i class="fa fa-close"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+                        <!--主页显示数据结束-->
+                        <!--分页开始-->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {{ page_list|safe }}
+                            </ul>
+                        </nav>
+                        <!--分页结束-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-info">
+                    <div class="panel panel-primary  ">
+                                  <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-book"></i> 权限管理
+                    <a href="{% url 'rbac:add_menu'  %}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+                        </h3>
+                    </div>
+
+                    <div class="panel-footer">
+                        <!--主页显示数据表格-->
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>权限名字</th>
+                                <th>url</th>
+                                <th>show</th>
+                                <th>所属菜单</th>
+                                <th>路由别名</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for per in per_obj %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ per.title }}</td>
+                                    <td>{{ per.url }}</td>
+                                    <td>{{ per.show }}</td>
+                                    <td>{{ per.menu }}</td>
+                                    <td>{{ per.name }}</td>
+                                    <td>
+                                    <a href="{% url 'rbac:edit_permission' per.id %}"> <i class="fa fa-edit"></i></a>
+                                    <a href="{% url 'rbac:del_permission' per.id %}"> <i class="fa fa-close"></i></a>
+
+                                </td>
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+                        <!--主页显示数据结束-->
+
+                        <!--分页开始-->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {{ page_list|safe }}
+                            </ul>
+                        </nav>
+                        <!--分页结束-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

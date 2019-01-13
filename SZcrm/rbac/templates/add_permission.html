@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block page-main %}
+ <form class="form-horizontal" action="" method="post" novalidate
+          autocomplete="off">
+        {% csrf_token %}
+        {% for filed in form_obj %}
+            <div class="form-group {% if  filed.errors %} has-error {% endif %} ">
+                <label for="{{ filed.id_for_label }}" class="col-sm-4 control-label">{{ filed.label }}</label>
+                <div class="col-sm-6">
+                    {{ filed }}
+                    <span class="help-block " style="color: red">{{ filed.errors.0 }}</span>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button id="id_but" type="submit" class="btn btn-success">提交</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

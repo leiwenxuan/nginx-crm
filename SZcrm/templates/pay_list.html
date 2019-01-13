@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block page-main %}
+        <div class="row placeholders">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        缴费记录
+                    </div>
+
+
+                    {% csrf_token %}
+                     <!--主页显示数据表格-->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>学员</th>
+                            <th>课程名</th>
+                            <th>所报班级</th>
+                            <th>费用金额</th>
+                            <th>交款日期</th>
+                            <th>销售</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for pay in pay_obj %}
+                            <tr>
+
+                                <td>{{ forloop.counter }}</td>
+                                <td style="display: none">{{ form.student }}</td>
+                                <td>{{ pay.customer }}</td>
+                                <td>{{ pay.course}}</td>
+                                <td>{{ pay.enrolment_class}}</td>
+                                <td>{{ pay.paid_fee }}</td>
+                                <td>{{ pay.date|date }}</td>
+                                <td>{{ pay.consultant }}</td>
+                                <th><a class="btn btn-warning" href="{% url 'crm:edit_pay' pay.customer.id %}"></a></th>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+
+                    </table>
+
+                    <!--主页显示数据结束-->
+
+                    <!--分页开始-->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ page_list|safe }}
+                        </ul>
+                    </nav>
+
+
+                    <!--分页结束-->
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

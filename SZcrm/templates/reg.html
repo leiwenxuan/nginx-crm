@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block reg %}
+    <div class="container ">
+        <div class="center-block">
+            <!--头部提示-->
+            <div class="hidden-xs col-sm-offset-4 title-top col-sm-12">
+                注册新用户
+                <hr class="head-hr ">
+            </div>
+            <div class="form-wrap col-sm-offset-2">
+                <form class="form-horizontal" action="{{ request.get_full_path }}" method="post" novalidate
+                      autocomplete="off">
+                    {% csrf_token %}
+                    {% for filed in form_obj %}
+                        <div class="form-group">
+                            <label for="{{ filed.id_for_label }}"
+                                   class="col-sm-2 control-label">{{ filed.label }}</label>
+                            <div class="col-sm-5">
+                                {{ filed }}
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-10">
+                            <button id="id_but" type="button" class="btn btn-success">ajax Sign in</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $('#id_but').click(function () {
+            // 定义一个对象，找到input 标签循环加入对象
+            var DataObj = {};
+            $('input').each(function () {
+                DataObj[$(this).attr('name')] = $(this).val();
+            });
+
+            console.log(DataObj);
+            $.ajax({
+                url: $('form').attr('action'),
+                type: 'post',
+                data: DataObj,
+                success: function (res) {
+                    if (!res.code) {
+                        swal("Good job!", "You clicked the button!", "success")
+                        setTimeout(function () {
+                            {#swal("Ajax request finished!");#}
+                            location.href = res.url;
+                        }, 1500);
+
+
+                    } else {
+                        $.each(res.essor_msg, function (k, v) {
+                            $('#id_' + k).next('span').text(v[0]).parent().addClass('has-error');
+                        })
+                    }
+                }
+            });
+
+        });
+        $('form input').focus(function () {
+            $(this).next('span').text('').parent().removeClass('has-error')
+        });
+
+        $('form input').blur(function () {
+            var $inp = $(this).next('span');
+            var Dataobj = {};
+            Dataobj[$(this).attr('name')] = $(this).val();
+            $.ajax({
+                url: '/crm/check_user/',
+                type: 'post',
+                data: Dataobj,
+                success: function (res) {
+                    if (!res.code) {
+                        console.log($inp)
+                      var a = $inp.next().attr('sp');
+                      console.log(a)
+                     if (a){
+
+                     }else {
+                          $inp.parent().append('<span sp="true" class="glyphicon glyphicon-ok" aria-hidden="true" style="color:green;"></span>\n');
+                     }
+
+                        {#var d1Ele = $inp.parent()[0].appendChild(imgEle);#}
+                    } else {
+                        console.log(res.error_msg);
+                        var d = $inp.parent().prev().text();
+                        {#console.log(d);#}
+                        $inp.parent().addClass('has-error');
+                        $inp.text(d + res.error_msg)
+                    }
+                }
+
+            });
+
+
+        });
+
+    </script>
+{% endblock %}

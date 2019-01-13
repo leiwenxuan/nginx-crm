@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Welcome</title>
+
+    {% load static %}
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ] -->
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'bootstrap-3.3.7/css/bootstrap.css' %}" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'css/nifty.css' %}" rel="stylesheet">
+
+
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+<body class="nifty-ready  pace-done">
+
+<div class="pace  pace-inactive">
+    <div class="pace-progress" style="width: 100%;" data-progress-text="100%" data-progress="99">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+</div>
+<div id="container" class="cls-container">
+
+    <!-- BACKGROUND IMAGE -->
+    <!--===================================================--><!--===================================================-->
+    <div id="bg-overlay" class="bg-img img-balloon"></div>
+
+
+    <!-- HEADER -->
+
+    <div class="cls-header cls-header-lg">
+        <div class="cls-brand">
+            <a class="box-inline" href="http://crm.oldboyedu.com/stu/myclass.html">
+
+                <span class="brand-title">老男孩IT教育<span class="text-thin">|&nbsp;登录</span></span>
+            </a>
+        </div>
+    </div>
+    <!--===================================================-->
+
+
+    <!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+        <div class="cls-content-sm panel">
+            <div class="panel-body">
+                <p class="pad-btm">请输入用户名/密码</p>
+                <form action="{{ request.get_full_path }}" method="post">
+                    {% csrf_token %}
+                    <span style="color: red"></span>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+
+                            </div>
+
+                            <input class="form-control" id="id_stu_name" maxlength="20" name="stu_name" required=""
+                                   type="email">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                            </div>
+
+                            <input class="form-control" id="id_stu_pwd" maxlength="20" name="stu_pwd" required=""
+                                   type="password">
+                        </div>
+                         <span class="has-error" style="color: red">{{ error_msg }}</span>
+                    </div>
+
+                    <div class="checkbox ">
+                        <label>
+                            <input type="checkbox" name="check_un" value="ok"> 是否七天免登陆
+                        </label>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 ">
+                            <div class="form-group text-right">
+                                 <button class="btn btn-success btn-block loginbtn" type="submit">登录</button>
+{#                                <button class="btn btn-success text-uppercase text-center" type="submit">登录</button>#}
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="pad-ver">
+
+        </div>
+    </div>
+    <!--===================================================-->
+
+
+</div>
+
+
+<!--jQuery [ REQUIRED ]-->
+<script src="{% static 'css/jquery.js' %}"></script>
+
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="{% static 'bootstrap-3.3.7/js/bootstrap.js' %}"></script>
+
+
+</body>
+</html>

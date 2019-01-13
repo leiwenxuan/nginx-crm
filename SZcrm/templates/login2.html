@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CRM 主页</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <!--		============================================ -->
+
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/style.css' %}">
+{#    <link rel="stylesheet" href="{% static 'reset.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'style.css' %}">#}
+
+</head>
+
+<body>
+<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+<div class="error-pagewrap">
+    <div class="error-page-int">
+        <div class="text-center m-b-md custom-login">
+            <h1>欢迎登陆</h1>
+        </div>
+        <div class="content-error">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <form action="{{ request.get_full_path }}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label" for="username">用户名</label>
+                            <input type="text" placeholder="example@gmail.com" title="Please enter you username"
+                                   required="" value="" name="stu_name" id="username" class="form-control">
+                            <span class="help-block small">{{ error_msg }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="password">密码</label>
+                            <input type="password" title="Please enter your password" placeholder="******" required=""
+                                   value="" name="stu_pwd" id="password" class="form-control">
+                            <span class="help-block small"></span>
+                        </div>
+
+                        <!--图片验证开始-->
+                        <div class="login-center clearfix">
+                            <div class="login-center-img"></div>
+                            <div class="login-center-input">
+                                <input type="text" name="v_code" value="" placeholder="请输入验证码"
+                                       onfocus="this.placeholder=''"
+                                       onblur="this.placeholder='请输入验证码'">
+                                <div class="login-center-input-text">验证码</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <img src="{% url 'crm:v_code' %}" alt="" id="v_code">
+                        </div>
+                        <!--图片验证end-->
+
+
+                        <div class="checkbox login-checkbox">
+                            <label>
+                                <input type="checkbox" class="i-checks"> 7天免登陆 </label>
+                        </div>
+                        <button class="btn btn-success btn-block loginbtn" name="check_un" value="ok">登陆</button>
+                        <a class="btn btn-default btn-block" href="{% url 'crm:reg' %}">Register</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center login-footer">
+            <p>Copyright © 2018. All rights reserved. Template by <a
+                    href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+        </div>
+    </div>
+</div>
+<script src=" {% static 'css/jquery.js' %}"></script>
+<!-- bootstrap JS
+    ============================================ -->
+<script src="{% static 'bootstrap-3.3.7/js/bootstrap.js' %}"></script>
+<script>
+    img = document.getElementById('v_code');
+    img.onclick = function () {
+        img.src += '?'
+    }
+</script>
+
+</body>
+
+</html>

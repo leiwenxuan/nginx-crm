@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>name</th>
+        <th>age</th>
+        <th>hobby</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for person in person_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.hobby }}</td>
+            <td>
+                <a class="btn-warning" href="{% url 'app01:edit' %}?id={{ person.id }}"> 编辑</a>
+                <button class="btn btn-warning">删除</button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

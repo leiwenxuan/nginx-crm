@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block logout %}
+
+    {% csrf_token %}
+    <script>
+        swal({
+                title: "是否要注销此次登陆？",
+                text: "劝君更尽一杯酒，西出阳关无故人!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+
+            function () {
+            console.log('6666');
+                $.ajax({
+                    url: '/crm/logout/',
+                    type: 'post',
+                    data: '',
+                    success: function (res) {
+                        if (!res.code) {
+                            console.log('123213');
+                            swal("Deleted!", "多情自古伤离别，更那堪冷落清秋节", "success");
+                            location.href = res.url
+                        } else {
+                            swal("Cancelled", "今宵酒醒何处，杨柳岸 :)", "error");
+                        }
+                    }
+                });
+            });
+
+          {#swal({#}
+          {#      title: "是否要删除?",#}
+          {#      text: "你当前进行的是一个不可逆的操作!",#}
+          {#      type: "warning",#}
+          {#      showCancelButton: true,#}
+          {#      confirmButtonClass: "btn-danger",#}
+          {#      cancelButtonText:'取消',#}
+          {#      confirmButtonText: "确定!",#}
+          {#      closeOnConfirm: false#}
+          {#  },#}
+          {#  function () {#}
+          {#      $.ajax({#}
+          {#          url: '/forma/logout/',#}
+          {#          type: 'post',#}
+          {#          data: '',#}
+          {#          success: function (res) {#}
+          {#              if (!res.code){#}
+          {#                  location.href = res.url;#}
+          {#                   swal("删库成功!", "准备跑路吧.", "success");#}
+          {#              } else{#}
+          {#                     swal("删除失败!", res.err_msg, "success");#}
+          {#              }#}
+          {#          }#}
+          {#      });#}
+          {#  });#}
+    </script>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+
+{#    {% for menu in menu_list %}#}
+{#        <li class="{{ menu.class }}"><a href="{{ menu.url }}"><span#}
+{#                class="icon-wrap"><i#}
+{#                class="fa {{ menu.icon }}"></i></span>{{ menu.title }}</a></li>#}
+{#    {% endfor %}#}
+
+<div class="multi-menu">
+    {% for menu in menu_list %}
+        <div class="item">
+            <div class="title"><i class="fa {{ menu.icon }}"></i>{{ menu.title }}</div>
+            <div class="body {{ menu.class }}">
+                {% for child in menu.children %}
+                    {% if child.show %}
+                        <a href="{{ child.url }}" class="{{ child.class }}">{{ child.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{#    <div class="menu">#}
+{#        {% for menu in menu_list %}#}
+{#            <div class="item">#}
+{#                <div class="title {{ menu.class }}">#}
+{#                    <a href="{{ menu.url }}"><span#}
+{#                            class="icon-wrap"><i#}
+{#                            class="fa {{ menu.icon }}"></i></span>{{ menu.title }}</a>#}
+{#                </div>#}
+{#                <div class="body text-center ">#}
+{#                    {% for child in menu.children %}#}
+{#                        <div><a href="{{ child.url }}" class="{{ child.class }}">{{ child.title }}</a></div>#}
+{#                    {% endfor %}#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{% load static %}
+<script src="{% static 'css/menu-js.js' %}"></script>

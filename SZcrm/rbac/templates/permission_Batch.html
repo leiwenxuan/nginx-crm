@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+
+{% block page-main %}
+    <form action="?post_type=add" method="post">
+        <div class="row placeholders">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            权限列表
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+
+                        {% csrf_token %}
+                        <!--主页显示数据表格-->
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>权限名字</th>
+                                <th>url</th>
+                                <th>show</th>
+                                <th>所属菜单</th>
+                                <th>路由别名</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for form in add_formset_obj %}
+                                {{ add_formset_obj.management_form }}
+                                <tr>
+                                    {{ form.id }}
+
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ form.title }} <span>{{ form.title.errors.0 }}</span></td>
+                                    <td>{{ form.url }}<span>{{ form.url.errors.0 }}</span></td>
+                                    <td>{{ form.show }}<span>{{ form.show.errors.0 }}</span></td>
+                                    <td>{{ form.menu }}<span>{{ form.menu.errors.0 }}</span></td>
+                                    <td>{{ form.name }}<span>{{ form.name.errors.0 }}</span></td>
+                                    <td>
+                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href=""><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                        <!--主页显示数据结束-->
+                        <input type="submit" value="保存">
+
+
+                        <!--分页开始-->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {{ page_list|safe }}
+                            </ul>
+                        </nav>
+                        <!--分页结束-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="?post_type=edit" method="post">
+        <div class="row placeholders">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            权限列表
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+
+                        {% csrf_token %}
+                        <!--主页显示数据表格-->
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>权限名字</th>
+                                <th>url</th>
+                                <th>show</th>
+                                <th>所属菜单</th>
+                                <th>路由别名</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for form in add_formset_all %}
+                                {{ add_formset_all.management_form }}
+                                <tr>
+                                    {{ form.id }}
+
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ form.title }} <span>{{ form.title.errors.0 }}</span></td>
+                                    <td>{{ form.url }}<span>{{ form.url.errors.0 }}</span></td>
+                                    <td>{{ form.show }}<span>{{ form.show.errors.0 }}</span></td>
+                                    <td>{{ form.menu }}<span>{{ form.menu.errors.0 }}</span></td>
+                                    <td>{{ form.name }}<span>{{ form.name.errors.0 }}</span></td>
+                                    <td>
+                                        <a href="{% url 'rbac:edit_permission' form.id.value %}"><i class="fa fa-edit"></i></a>
+                                        <a href="{% url 'rbac:del_permission' form.instance.id %}?next={% url 'rbac:import_all' %}"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                        <!--主页显示数据结束-->
+                        <input type="submit" value="保存">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="?post_type=edit" method="post">
+        <div class="row placeholders">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            权限列表
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+
+                        {% csrf_token %}
+                        <!--主页显示数据表格-->
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>权限名字</th>
+                                <th>url</th>
+                                <th>show</th>
+                                <th>所属菜单</th>
+                                <th>路由别名</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for form in add_formset_db %}
+                                {{ add_formset_db.management_form }}
+                                <tr>
+                                    {{ form.id }}
+
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ form.title }} <span>{{ form.title.errors.0 }}</span></td>
+                                    <td>{{ form.url }}<span>{{ form.url.errors.0 }}</span></td>
+                                    <td>{{ form.show }}<span>{{ form.show.errors.0 }}</span></td>
+                                    <td>{{ form.menu }}<span>{{ form.menu.errors.0 }}</span></td>
+                                    <td>{{ form.name }}<span>{{ form.name.errors.0 }}</span></td>
+                                    <td>
+                                        <a href="{% url 'rbac:del_permission' form.id.value %}"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                        <!--主页显示数据结束-->
+                        <input type="submit" value="保存">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
