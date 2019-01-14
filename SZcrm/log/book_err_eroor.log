@@ -4155,3 +4155,148 @@ Traceback (most recent call last):
   File "/usr/lib/python3.6/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
     raise errorclass(errno, errval)
 django.db.utils.ProgrammingError: (1146, "Table 'szcrm.django_session' doesn't exist")
+[2019-01-13 22:19:36,726][Thread-8:139849922029312][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /crm/v_code/]
+Traceback (most recent call last):
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/django/SZcrm/crm/auth_views.py", line 32, in v_code
+    font_obj = ImageFont.truetype(r'/usr/share/fonts/deepin-font-install/Arial/arialbi.ttf', 36)
+  File "/opt/python36/lib/python3.6/site-packages/PIL/ImageFont.py", line 280, in truetype
+    return FreeTypeFont(font, size, index, encoding, layout_engine)
+  File "/opt/python36/lib/python3.6/site-packages/PIL/ImageFont.py", line 145, in __init__
+    layout_engine=layout_engine)
+OSError: cannot open resource
+[2019-01-13 22:21:08,005][Thread-15:139849922029312][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /crm/v_code/]
+Traceback (most recent call last):
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/django/SZcrm/crm/auth_views.py", line 32, in v_code
+    font_obj = ImageFont.truetype(r'/usr/share/fonts/deepin-font-install/Arial/arialbi.ttf', 36)
+  File "/opt/python36/lib/python3.6/site-packages/PIL/ImageFont.py", line 280, in truetype
+    return FreeTypeFont(font, size, index, encoding, layout_engine)
+  File "/opt/python36/lib/python3.6/site-packages/PIL/ImageFont.py", line 145, in __init__
+    layout_engine=layout_engine)
+OSError: cannot open resource
+[2019-01-14 10:24:24,868][uWSGIWorker5Core0:139689755662464][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /crm/class_list/]
+Traceback (most recent call last):
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./crm/teacher_views.py", line 15, in get
+    return render(request, 'class_list.html', {'class_list': query_set})
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/library.py", line 225, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+  File "./rbac/templatetags/menu_list.py", line 19, in meun_list
+    menu_dict = sorted(menu_dict.values(), key=lambda x: x['weight'])
+AttributeError: 'NoneType' object has no attribute 'values'
+[2019-01-14 10:54:19,020][uWSGIWorker5Core0:140238755768448][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /rbac/menu_list/]
+Traceback (most recent call last):
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./rbac/views.py", line 69, in menu_list
+    'per_obj': per_obj
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/library.py", line 225, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+  File "./rbac/templatetags/menu_list.py", line 19, in meun_list
+    menu_dict = sorted(menu_dict.values(), key=lambda x: x['weight'])
+AttributeError: 'NoneType' object has no attribute 'values'
+[2019-01-14 10:54:42,885][uWSGIWorker2Core0:140238755768448][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /rbac/per_list]
+Traceback (most recent call last):
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./rbac/views.py", line 98, in permission_list
+    return render(request, 'permission_list.html', {'per_obj': per_obj})
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/test/utils.py", line 107, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/root/Envs/szcrm/lib/python3.6/site-packages/django/template/library.py", line 225, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+  File "./rbac/templatetags/menu_list.py", line 19, in meun_list
+    menu_dict = sorted(menu_dict.values(), key=lambda x: x['weight'])
+AttributeError: 'NoneType' object has no attribute 'values'
